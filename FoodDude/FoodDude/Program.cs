@@ -10,8 +10,7 @@ namespace FoodDude
     class Program
     {
         //load saved food as the program starts from a particular path
-        private string save_path = AppDomain.CurrentDomain.BaseDirectory;
-
+        private static string save_path = AppDomain.CurrentDomain.BaseDirectory;
 
         static void Main(string[] args)
         {           
@@ -20,7 +19,7 @@ namespace FoodDude
 
 
 
-        private SavedDirectories GetSavedDirectories()
+        private static SavedDirectories GetSavedDirectories()
         {
             if (!File.Exists(save_path))
             {
@@ -32,7 +31,7 @@ namespace FoodDude
             {
                 string json = stream.ReadToEnd();
 
-                return JsonUtility.FromJson<SavedDirectories>(json);
+                return JsonUtility.FromJson<SavedDirectories>(json); //this worked in Unity. Need to find a non unity equivalency...
             }
         }
     }
