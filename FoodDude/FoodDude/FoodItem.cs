@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace FoodDude
 {
@@ -16,16 +17,34 @@ namespace FoodDude
             int quantity;
 
         public
-            FoodItem(DateTime d_a, int dte, string name, int q)
+            FoodItem(int dte, string name, int q)
         {
-            date_added = d_a;
-            days_to_expiration = dte;
-            date_expiration = date_added.AddDays(dte);
-            food_name = name;
-            quantity = q;
+            this.date_added = DateTime.Now;
+            this.days_to_expiration = dte;
+            this.date_expiration = date_added.AddDays(dte);
+            this.food_name = name;
+            this.quantity = q;
         }
 
+        public int getDTE()
+        {
+            return this.days_to_expiration;
+        }
 
+        public void setDTE(int dte)
+        {
+            this.days_to_expiration = dte;
+        }
+
+        public int getQuantity()
+        {
+            return this.quantity;
+        }
+
+        public void setQuantity(int q)
+        {
+            this.quantity = q;
+        }
 
         }
 }
