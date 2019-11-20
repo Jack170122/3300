@@ -11,35 +11,35 @@ namespace FoodDudeCoreConsole
 {
     class FoodItem
     {
-        private
-            DateTime date_added;
-            int days_to_expiration; //this will need to come from the "external database" 
-            DateTime date_expiration; //DTE + date_added equals date_expiration
-            string food_name;
-            int quantity;
+        private DateTime date_added;
+        private int days_to_expiration; //this will need to come from the "external database" 
+        private DateTime date_expiration; //DTE + date_added equals date_expiration
+        private string food_name;
+        private int quantity;
 
-        public
-            FoodItem(int dte, string name, int q)
-        {
-            this.date_added = DateTime.Now;
-            this.days_to_expiration = dte;
-            this.date_expiration = date_added.AddDays(dte);
-            this.food_name = name;
-            this.quantity = q;
-        }
+        
+        FoodItem()
+        { }
 
-        public int getDTE() //this method has been changed for the prototype. will be more complicated for the final product
+        public void getDTE() //this method has been changed for the prototype. will be more complicated for the final product
         {
             //will need to read from a file. 
-            FileStream file = File.OpenRead("ExternalRepository.txt");
-            string line = "   ";
-            var pair = line.Split(new char[] { ' ' });
-            bool okl = int.TryParse(pair[1], out var val); 
+            //FileStream file = File.OpenRead("ExternalRepository.txt");
+            string[] lines = System.IO.File.ReadAllLines("ExternalRepository.txt");
+            foreach (var line in lines)
+            {
+                string[] pair = line.Split(' ');
+                if (pair[0] == food_name)
+                {
+                    days_to_expiration = int.Parse(pair[1]);
+                }
+            }
+            days_to_expiration = -1;           
         }
 
-        public void setDTE(int dte)
+        public void setExpiration()
         {
-            this.days_to_expiration = dte;
+            date_expiration = date_added + days_to_expiration;
         }
 
         public int getQuantity()

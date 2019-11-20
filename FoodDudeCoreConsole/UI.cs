@@ -13,17 +13,21 @@ namespace FoodDudeCoreConsole
 
         {
             Console.WriteLine("Welcome to FoodDude!\n Please Select from the menu items:\n" +
-                "1. View Directories\n2. Settings");
+                "1. View Directories\n2. Settings\n3. Exit");
             string line = Console.ReadLine();
             int selection = int.Parse(line);
 
-            switch (selection)
+            while (selection!=3)
             {
-                case 1:
+                if (selection == 1)
+                {
                     DisplayDirectories();
-                    break;
-                default:
-                    break;
+                }
+                else
+                {
+                    DisplaySettings();
+                }
+
             }
         }
 
@@ -31,26 +35,16 @@ namespace FoodDudeCoreConsole
         {
 
         }
+        public void DisplayFoodItems()
+        {
+
+        }
+
+        public void DisplaySettings()
+        {
+
+        }
     }
-
-    partial class UI {
-        
-    }
-
-    partial class UI {
-        
-    }
-
-    public void DisplayFoodItems()
-    {
-
-    }
-
-    void DisplaySettings()
-    {
-
-    }
-}
 
 }
 

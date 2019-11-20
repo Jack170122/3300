@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Text.Json;  
+using System.Text.Json.Serialization;  
 
 namespace FoodDudeCoreConsole
 {
@@ -19,7 +19,7 @@ namespace FoodDudeCoreConsole
 
         private SavedDirectories GetSavedDirectories()
         {
-            if (!File.Exists(save_path))
+            /*if (!File.Exists(save_path))
             {
                 File.Create(save_path).Dispose(); //need to dispose or else get an error later saying file is already in use
                 return new SavedDirectories();
@@ -30,6 +30,12 @@ namespace FoodDudeCoreConsole
                 string json = stream.ReadToEnd();
 
                 return JsonUtility.FromJson<SavedDirectories>(json); //this worked in Unity. Need to find a non unity equivalency...
+            }
+            */
+
+            using (FileStream fs = File.Create(save_path))
+            {
+                await JsonSerializer.SerializeAsync(fs, food_directories);
             }
         }
     }
