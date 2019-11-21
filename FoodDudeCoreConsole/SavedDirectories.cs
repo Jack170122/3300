@@ -4,7 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Text.Json.Serialization;  
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace FoodDudeCoreConsole
 {
@@ -16,10 +17,10 @@ namespace FoodDudeCoreConsole
 
         public List<FoodDirectory> food_directories = new List<FoodDirectory>();
 
-
-        private SavedDirectories GetSavedDirectories()
+        
+        public SavedDirectories GetSavedDirectories()
         {
-            /*if (!File.Exists(save_path))
+            if (!File.Exists(save_path))
             {
                 File.Create(save_path).Dispose(); //need to dispose or else get an error later saying file is already in use
                 return new SavedDirectories();
@@ -29,13 +30,18 @@ namespace FoodDudeCoreConsole
             {
                 string json = stream.ReadToEnd();
 
-                return JsonUtility.FromJson<SavedDirectories>(json); //this worked in Unity. Need to find a non unity equivalency...
+                return JsonSerializer.Deserialize<SavedDirectories>(json); //this worked in Unity. Need to find a non unity equivalency...
             }
-            */
+       
 
-            using (FileStream fs = File.Create(save_path))
+        }
+
+        public void SaveDirectories(SavedDirectories directories) //this will save scores to file
+        {
+            using (StreamWriter stream = new StreamWriter(save_path))
             {
-                await JsonSerializer.SerializeAsync(fs, food_directories);
+                string json = JsonSerializer.Serialize(directories); //format to true makes it look nice
+                stream.Write(json);
             }
         }
     }

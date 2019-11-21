@@ -6,8 +6,8 @@ namespace FoodDudeCoreConsole
 {
     class FoodDirectory
     {
-        private
-            string name;
-        List<FoodItem> food_items = new List<FoodItem>();
+      
+       public string name;
+       public List<FoodItem> food_items = new List<FoodItem>();
     }
 }

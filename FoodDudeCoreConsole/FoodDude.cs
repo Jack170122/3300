@@ -2,11 +2,12 @@
 
 namespace FoodDudeCoreConsole
 {
-    class Program
+    class FoodDude
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            UserInterface new_instance = new UserInterface();
+            new_instance.Run();
         }
     }
 }
