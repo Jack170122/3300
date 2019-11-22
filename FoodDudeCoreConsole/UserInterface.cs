@@ -20,52 +20,25 @@ namespace FoodDudeCoreConsole
 
         public void DisplayMainMenu()
         {
-            int main_menu_selection = 0;
+            int selection = 0;
             do
             {
                 Console.WriteLine("Welcome to FoodDude!\n Please Select from the menu items:\n" +
                     "1. View Directories\n2. Settings\n3. Exit");
-                string line = Console.ReadLine();
-                main_menu_selection = int.Parse(line);
+                selection = int.Parse(Console.ReadLine());               
 
-                if (main_menu_selection == 1)
+                if (selection == 1)
                 {
-                    DisplayDirectories();
+                    saved_directories.DisplayDirectories();
                 }
-                if (main_menu_selection == 2)
+                if (selection == 2)
                 {
                     DisplaySettings();
                 }
 
-            } while (main_menu_selection != 3);
+            } while (selection != 3);
 
             return; 
-        }
-
-        public void DisplayDirectories()
-        {
-            int directories_menu_selection = 0;
-
-            do
-            {
-                Console.WriteLine("DIRECTORIES:");
-
-                for (int i = 0; i < saved_directories.food_directories.Count(); i++)
-                {
-                    Console.Write(i + 1);
-                    Console.WriteLine(saved_directories.food_directories.ElementAt(i));
-                }
-
-                Console.WriteLine("Please input -1 to return to main menu. 0 to add directory or " +
-                    "the numbered directory to view contents");
-
-
-
-            } while (directories_menu_selection != -1);
-        }
-        public void DisplayFoodItems()
-        {
-
         }
 
         public void DisplaySettings()

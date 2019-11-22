@@ -44,5 +44,47 @@ namespace FoodDudeCoreConsole
                 stream.Write(json);
             }
         }
+
+        public void DisplayDirectories()
+        {
+            int selection = 0;
+
+            do
+            {
+                Console.WriteLine("DIRECTORIES:");
+
+                for (int i = 0; i < food_directories.Count(); i++)
+                {
+                    Console.Write(i + 1);
+                    Console.WriteLine(". %s", food_directories.ElementAt(i));
+                }
+
+                Console.WriteLine("Please input -1 to return to main menu. 0 to add directory or " +
+                    "the numbered directory to view contents");
+                selection = int.Parse(Console.ReadLine());
+
+                if (selection == 0)
+                {
+                    AddDirectory();
+                }
+
+                if (selection >= 1)
+                {
+                    food_directories.ElementAt(selection - 1).DisplayFoodItems();
+                }
+
+
+            } while (selection != -1);
+
+            return; //when user selects -1 control should return back to main menu
+        }
+
+        public void AddDirectory()
+        {
+            Console.WriteLine("\n\nPlease input name of new directory: ");
+            string name = Console.ReadLine();
+            FoodDirectory new_directory = new FoodDirectory(name);
+            food_directories.Add(new_directory);
+        }
     }
 }

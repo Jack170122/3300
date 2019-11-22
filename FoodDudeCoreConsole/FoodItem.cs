@@ -11,23 +11,20 @@ namespace FoodDudeCoreConsole
 {
     class FoodItem
     {
-        public DateTime date_added
-        { get; set; }
-        private int days_to_expiration   //this will need to come from the "external database" 
-        {
-            get => days_to_expiration;
-            set => 
-        }
-            
+        private DateTime date_added;
+        private int days_to_expiration;   //this will need to come from the "external database" 
         private DateTime date_expiration; //DTE + date_added equals date_expiration
         private string food_name;
         private int quantity;
 
-        
-        FoodItem()
-        { }
+        public FoodItem(string food_name, DateTime date_added, int quantity)
+        {
+            this.food_name = food_name; this.date_added = date_added; this.quantity = quantity;
+            setDTE();
+            setExpiration();
+        }
 
-        public void setDTE() //this method has been changed for the prototype. will be more complicated for the final product
+        private void setDTE() //this method has been changed for the prototype. will be more complicated for the final product
         {
             //will need to read from a file. 
             //FileStream file = File.OpenRead("ExternalRepository.txt");
@@ -44,20 +41,26 @@ namespace FoodDudeCoreConsole
             days_to_expiration = -1;           
         }
 
-        public void setExpiration()
+        private void setExpiration()
         {
             date_expiration = date_added.AddDays(days_to_expiration);
         }
-
-        public int getQuantity()
+        
+        public string getFoodName()
         {
-            return this.quantity;
+            return food_name;
         }
 
-        public void setQuantity(int q)
+        public DateTime getExpiration()
         {
-            this.quantity = q;
+            return date_expiration; 
         }
-
+        public void DisplayFoodItem()
+        {
+            Console.WriteLine("\n\nName: %s\n, Quantity: %f\n, Purchase Date: ", food_name, quantity);
+            Console.WriteLine(date_added);
+            Console.Write("Expiration date:");
+            Console.WriteLine(date_expiration);
         }
+    }
 }
