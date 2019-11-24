@@ -8,11 +8,11 @@ namespace FoodDudeCoreConsole
 {
     partial class UserInterface
     {
-        SavedDirectories saved_directories; 
+        SavedDirectories saved_directories = new SavedDirectories(); 
 
         public UserInterface()
         {
-            saved_directories = saved_directories.GetSavedDirectories();
+            saved_directories = SavedDirectories.GetSavedDirectories();
         }
 
         public void Run()
@@ -38,6 +38,7 @@ namespace FoodDudeCoreConsole
 
             } while (selection != 3);
 
+            saved_directories.SaveDirectories();
             return; 
         }
 
