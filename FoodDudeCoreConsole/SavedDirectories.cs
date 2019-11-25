@@ -64,7 +64,7 @@ namespace FoodDudeCoreConsole
                 for (int i = 0; i < food_directories.Count(); i++)
                 {
                     Console.Write(i + 1);
-                    Console.WriteLine(". %s", food_directories[i].name);
+                    Console.WriteLine(". {0}", food_directories[i].name);
                 }
 
                 Console.WriteLine("Please input -1 to return to main menu. 0 to add directory or " +

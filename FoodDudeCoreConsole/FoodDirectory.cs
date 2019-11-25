@@ -8,9 +8,10 @@ namespace FoodDudeCoreConsole
     class FoodDirectory
     {
       
-       public string name;
+       public string name { get; private set; }
        public List<FoodItem> food_items = new List<FoodItem>();
 
+        
        public FoodDirectory(string name)
         { this.name = name; }
        public void DisplayFoodItems()
@@ -19,11 +20,11 @@ namespace FoodDudeCoreConsole
             do
             {
                 int i;
-                Console.WriteLine("\n\n%s Food List: ", name);
+                Console.WriteLine("\n\n{0}'s Food List: ", name);
                 for ( i = 0; i < food_items.Count; i++)
                 {
                     Console.Write(i + 1);
-                    Console.WriteLine(". %s\n", food_items.ElementAt(i).getFoodName());
+                    Console.WriteLine(". {0}\n", food_items.ElementAt(i).getFoodName());
                 }
 
                 Console.WriteLine("Please input -1 to go back. 0 to add a food item or the number associated with the food item to view it.");

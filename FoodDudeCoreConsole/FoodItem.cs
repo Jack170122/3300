@@ -5,18 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.IO;
-
+using Newtonsoft.Json;
 
 namespace FoodDudeCoreConsole
 {
     class FoodItem
     {
-        private DateTime date_added;
-        private int days_to_expiration;   //this will need to come from the "external database" 
-        private DateTime date_expiration; //DTE + date_added equals date_expiration
-        private string food_name;
-        private int quantity;
+        public DateTime date_added { get; private set; }
+        public int days_to_expiration { get; private set; }   //this will need to come from the "external database" 
+        public DateTime date_expiration { get; private set; } //DTE + date_added equals date_expiration
+        public string food_name { get; private set; }
+        public int quantity { get; private set; }
 
+        string repository_path = AppDomain.CurrentDomain.BaseDirectory + "\\" + "ExternalRepository" + ".txt";
+
+        [JsonConstructor]
+        public FoodItem(DateTime date_added, int days_to_expiration, DateTime date_expiration, string food_name, int quantity)
+        {
+            this.date_added = date_added;
+            this.days_to_expiration = days_to_expiration;
+            this.date_expiration = date_expiration;
+            this.food_name = food_name;
+            this.quantity = quantity; 
+        }
         public FoodItem(string food_name, DateTime date_added, int quantity)
         {
             this.food_name = food_name; this.date_added = date_added; this.quantity = quantity;
@@ -28,7 +39,7 @@ namespace FoodDudeCoreConsole
         {
             //will need to read from a file. 
             //FileStream file = File.OpenRead("ExternalRepository.txt");
-            string[] lines = System.IO.File.ReadAllLines("ExternalRepository.txt");
+            string[] lines = System.IO.File.ReadAllLines(repository_path);
             foreach (var line in lines)
             {
                 string[] pair = line.Split(' ');
@@ -57,10 +68,8 @@ namespace FoodDudeCoreConsole
         }
         public void DisplayFoodItem()
         {
-            Console.WriteLine("\n\nName: %s\n, Quantity: %f\n, Purchase Date: ", food_name, quantity);
-            Console.WriteLine(date_added);
-            Console.Write("Expiration date:");
-            Console.WriteLine(date_expiration);
+            Console.WriteLine("\n\nName: {0}\nQuantity: {1}\n Purchase Date: {2}", food_name, quantity, date_added);
+            Console.WriteLine("Expiration date: {0}", date_expiration);
         }
     }
 }
