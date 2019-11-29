@@ -4,10 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
-using System.DateTime;
-using SavedDirectories.cs;
-using FoodItem.cs
-using FoodDirectory.cs;
+using System.IO;
 
 
 namespace FoodDudeCoreConsole
@@ -37,49 +34,60 @@ namespace FoodDudeCoreConsole
 
         public void sendAlert()
         {
-            try{
-            StreamReader daycheck = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "\\" + "Last_Day" + ".txt", false);
-            String d = null;
-            DateTime oldDate;
-            DateTime currentDate = DateTime.Today
-            if (daycheck.FileInfo.Length == 0)
+            try
             {
-                //new file
-                SavedDirectories sd = SavedDirectories.GetSavedDirectories()
-                foreach (FoodDirectory list in sd)
+                StreamReader daycheck = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "\\" + "Last_Day" + ".txt", false);
+                StreamWriter daywrite = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "\\" + "Last_Day" + ".txt", false);
+                String d = null;
+                DateTime oldDate;
+                DateTime currentDate = DateTime.Today;
+                FileInfo fi = new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "\\" + "Last_Day" + ".txt");
+
+                if (fi.Length == 0)
                 {
-                    foreach(FoodItem item in list)
+                    //new file
+                    SavedDirectories sd = SavedDirectories.GetSavedDirectories();
+                    foreach (FoodDirectory list in sd.food_directories)
                     {
-                        if (item.getExpiration() <= this.notificationDays)
+                        foreach (FoodItem item in list.food_items)
                         {
-                            Console.WriteLine(item.DisplayFoodItem() + "is about to expire");
+                            if (item.days_to_expiration <= this.notificationDays)
+                            {
+                                item.DisplayFoodItem();
+                                Console.WriteLine(" is about to expire");
+                            }
                         }
                     }
+                    daywrite.WriteLine(currentDate);
                 }
-                daycheck.WriteLine(currentDate);
+                else
+                {
+                    d = daycheck.ReadLine();
+                    oldDate = DateTime.Parse(d);  //convert string to date
+                    if (oldDate.Date != currentDate.Date)
+                    {
+                        SavedDirectories sd = SavedDirectories.GetSavedDirectories();
+                        foreach (FoodDirectory list in sd.food_directories)
+                        {
+                            foreach (FoodItem item in list.food_items)
+                            {
+                                if (item.days_to_expiration <= this.notificationDays)
+                                {
+                                    item.DisplayFoodItem();
+                                    Console.WriteLine(" is about to expire");
+                                }
+                            }
+                        }
+                    }
+                    daywrite.WriteLine(currentDate);
+                }
             }
-            else
+            catch
             {
-                d = daycheck.ReadLine();
-                oldDate = DateTime.strptime(d);  //convert string to date
-                if (oldDate.Date != currentDate.Date)
-                {
-                    SavedDirectories sd = SavedDirectories.GetSavedDirectories()
-                foreach (FoodDirectory list in sd)
-                {
-                    foreach(FoodItem item in list)
-                    {
-                        if (item.getExpiration() <= this.notificationDays)
-                        {
-                            Console.WriteLine(item.DisplayFoodItem() + "is about to expire.");
-                        }
-                    }
-                }
-                }
-                daycheck.WriteLine(currentDate);
+                Console.WriteLine("Unable to open file.");
             }
 
-            }
+            
         }
 
         public void updateSettings(int notDay, bool[] dow, string[] sb)

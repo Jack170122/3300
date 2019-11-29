@@ -44,7 +44,7 @@ namespace FoodDudeCoreConsole
 
         public void DisplaySettings()
         {
-
+            Settings.sendAlert();
         }
     }
 
