@@ -9,6 +9,7 @@ namespace FoodDudeCoreConsole
     partial class UserInterface
     {
         SavedDirectories saved_directories = new SavedDirectories(); 
+        
 
         public UserInterface()
         {
@@ -44,7 +45,7 @@ namespace FoodDudeCoreConsole
 
         public void DisplaySettings()
         {
-
+            Settings.sendAlert(saved_directories);
         }
     }
 
