@@ -1,0 +1,7 @@
+Milk 1
+Orange 1
+Chicken 2
+Cheese 2
+Popcorn 100
+Oatmeal 111
+Walnuts 1

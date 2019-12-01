@@ -1,0 +1,13 @@
+C:\Users\William Archbold\Desktop\CS 3300\FoodDudeCoreConsole\obj\Debug\netcoreapp3.0\FoodDudeCoreConsole.csprojAssemblyReference.cache
+C:\Users\William Archbold\Desktop\CS 3300\FoodDudeCoreConsole\obj\Debug\netcoreapp3.0\FoodDudeCoreConsole.AssemblyInfoInputs.cache
+C:\Users\William Archbold\Desktop\CS 3300\FoodDudeCoreConsole\obj\Debug\netcoreapp3.0\FoodDudeCoreConsole.AssemblyInfo.cs
+C:\Users\William Archbold\Desktop\CS 3300\FoodDudeCoreConsole\bin\Debug\netcoreapp3.0\FoodDudeCoreConsole.exe
+C:\Users\William Archbold\Desktop\CS 3300\FoodDudeCoreConsole\bin\Debug\netcoreapp3.0\FoodDudeCoreConsole.deps.json
+C:\Users\William Archbold\Desktop\CS 3300\FoodDudeCoreConsole\bin\Debug\netcoreapp3.0\FoodDudeCoreConsole.runtimeconfig.json
+C:\Users\William Archbold\Desktop\CS 3300\FoodDudeCoreConsole\bin\Debug\netcoreapp3.0\FoodDudeCoreConsole.runtimeconfig.dev.json
+C:\Users\William Archbold\Desktop\CS 3300\FoodDudeCoreConsole\bin\Debug\netcoreapp3.0\FoodDudeCoreConsole.dll
+C:\Users\William Archbold\Desktop\CS 3300\FoodDudeCoreConsole\bin\Debug\netcoreapp3.0\FoodDudeCoreConsole.pdb
+C:\Users\William Archbold\Desktop\CS 3300\FoodDudeCoreConsole\obj\Debug\netcoreapp3.0\FoodDudeCoreConsole.dll
+C:\Users\William Archbold\Desktop\CS 3300\FoodDudeCoreConsole\obj\Debug\netcoreapp3.0\FoodDudeCoreConsole.pdb
+C:\Users\William Archbold\Desktop\CS 3300\FoodDudeCoreConsole\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
+C:\Users\William Archbold\Desktop\CS 3300\FoodDudeCoreConsole\obj\Debug\netcoreapp3.0\FoodDudeCoreConsole.csproj.CopyComplete
