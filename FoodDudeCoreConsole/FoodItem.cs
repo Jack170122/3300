@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace FoodDudeCoreConsole
 {
-    class FoodItem
+    public class FoodItem
     {
         public DateTime date_added { get; private set; }
         public int days_to_expiration { get; private set; }   //this will need to come from the "external database" 
@@ -17,20 +17,22 @@ namespace FoodDudeCoreConsole
         public string food_name { get; private set; }
         public int quantity { get; private set; }
 
+        private string path;
         string repository_path = AppDomain.CurrentDomain.BaseDirectory + "\\" + "ExternalRepository" + ".txt";
 
         [JsonConstructor]
-        public FoodItem(DateTime date_added, int days_to_expiration, DateTime date_expiration, string food_name, int quantity)
+        public FoodItem(DateTime date_added, int days_to_expiration, DateTime date_expiration, string food_name, int quantity, string path = "")
         {
             this.date_added = date_added;
             this.days_to_expiration = days_to_expiration;
             this.date_expiration = date_expiration;
             this.food_name = food_name;
-            this.quantity = quantity; 
+            this.quantity = quantity;
+            this.path = path;
         }
-        public FoodItem(string food_name, DateTime date_added, int quantity)
+        public FoodItem(string food_name, DateTime date_added, int quantity, string path = "")
         {
-            this.food_name = food_name; this.date_added = date_added; this.quantity = quantity;
+            this.food_name = food_name; this.date_added = date_added; this.quantity = quantity; this.path = path;
             setDTE();
             setExpiration();
         }
@@ -39,7 +41,7 @@ namespace FoodDudeCoreConsole
         {
             //will need to read from a file. 
             //FileStream file = File.OpenRead("ExternalRepository.txt");
-            string[] lines = System.IO.File.ReadAllLines(repository_path);
+            string[] lines = System.IO.File.ReadAllLines(string.IsNullOrEmpty(path) ? repository_path : path);
             foreach (var line in lines)
             {
                 string[] pair = line.Split(' ');
